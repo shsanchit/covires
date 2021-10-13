@@ -1,0 +1,287 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation" style="height: 4rem; ">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="../../../assets/img/covi-2.png" height="190px" width="180px"/>
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu navbar-menu is-uppercase	has-text-weight-medium">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/"> Home </a>
+
+      <a class="navbar-item" routerLink="/about"> About </a>
+      <a class="navbar-item" (click)="lancuchForm()"> Request Help </a>
+    </div>
+
+    <div class="navbar-end ">
+      <a class="navbar-item" *ngIf="LoggedIn ==true ">{{mobile}}</a>
+      <a class="navbar-item" (click)="logout()" *ngIf="LoggedIn==true ">
+        Logout </a>
+
+      <div class="navbar-item ">
+       
+        <div class="buttons" (click)="lancuchLogin()" *ngIf="LoggedIn!=true">
+          <a class="button is-dange">
+            <strong> Log in/Sign up</strong>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ROF -->
+
+
+<div class="modal is-clipped m1" id="showModal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Fill The Form</p>
+      <button class="delete" aria-label="close" id="closeModal"></button>
+    </header>
+    <form [formGroup]="registrationForm" (ngSubmit)="addRecord()">
+
+    <section class="modal-card-body">
+      <!-- Content ... -->
+
+      <div class="field-body">
+        <div class="field">
+          <label class="label">State</label>
+          <div class="control">
+            <div class="select is-success is-fullwidth">
+              <select formControlName="states" (change)="selecteState($event)">
+                <!-- <option>Select State</option> -->
+                <option *ngFor="let item of state " value="{{ item.id }}">
+                  {{ item.id }}
+                </option>
+              </select>
+            </div>
+            <br />
+          </div>
+          <p class="help is-danger" *ngIf="isSubmitted && states.errors?.required">
+           Select The State
+          </p>
+  
+       
+        </div>
+        <div class="field">
+          <label class="label">District</label>
+
+          <div class="control">
+            <div class="select is-success is-fullwidth">
+              <select formControlName="district" (change)="selecteDistrict($event)">
+                <option>Select District &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;    -</option>
+                <option *ngFor="let item of allDistrict">{{ item }}</option>
+              </select>
+            </div>
+          </div>
+          <p class="help is-danger" *ngIf="isSubmitted && district.errors?.required">
+            Select The District
+           </p>
+        </div>
+      </div>
+      <div class="field-body mt-3">
+        
+        <div class="field">
+          <label class="label">Help Type</label>
+          <div class="control">
+            <div class="select is-success is-fullwidth">
+              <select formControlName="type" (change)="selecteHelpType($event)">
+
+                <option >Select Help Type </option>
+                <option value="oxygen">Oxygen</option>
+                <option value="ventilator">Ventilator</option>
+                <option value="bed">Bed</option>
+                <option value="plasma">Plasma</option>
+                <option value="medicine">Medicine</option>
+                <option value="other">Others</option>
+              </select>
+            </div>
+            <br />
+          </div>
+          <p class="help is-danger" *ngIf="isSubmitted && district.errors?.required">
+            Select The Help Type
+           </p>
+        </div>
+        <div class="field">
+          <label class="label">Mobile Number</label>
+  
+          <div class="field-label"></div>
+          <div class="field-body">
+            <div class="field is-expanded">
+              <div class="field has-addons">
+                <p class="control">
+                  <a class="button is-static"> +91 </a>
+                </p>
+                <p class="control is-expanded ">
+                  <input formControlName="mobileno"
+                    class="input is-success is-fullwidth"
+                    type="tel"
+                    placeholder="Your phone number"
+                    id="mob"
+
+                  />
+                </p>
+               
+              </div>
+              <p class="help is-danger" *ngIf="isSubmitted && mobileno.errors?.required">
+                Enter the Mobile Number
+               </p>
+              <p class="help is-danger" *ngIf="isSubmitted && mobileno.errors?.maxLength">
+                Enter the correct Mobile Number
+               </p>
+              <p class="help is-danger" *ngIf="isSubmitted && mobileno.errors?.minLength">
+               Mobile Number must be 10 Digit
+               </p>
+              <!-- <p class="help">Do not enter the first zero</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <label class="label mt-3">Your Details</label>
+
+      <div class="field-body ">
+
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input formControlName="name" class="input is-success is-fullwidth" type="text" placeholder="Name"  id="name">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+          <p class="help is-danger" *ngIf="isSubmitted && name.errors?.required">
+            Plz Enter Name
+           </p>
+        </div>
+        <div class="field">
+          <p class="control is-expanded has-icons-left has-icons-right">
+            <input formControlName="email" class="input is-success is-fullwidth" type="email" placeholder="Email" id="email" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </p>
+          <p class="help is-danger" *ngIf="isSubmitted && email.errors?.required">
+             Enter Email
+           </p>
+          <p class="help is-danger" *ngIf="isSubmitted && email.errors?.email">
+             Enter Correct Email
+           </p>
+        </div>
+      </div>
+
+     
+     
+
+      <div class="field ">
+          <label class="label">More Information</label>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <textarea formControlName="detail" class="textarea is-success" placeholder="Explain how we can help you"  id="detail"></textarea>
+            </div>
+            <p class="help is-danger" *ngIf="isSubmitted && detail.errors?.required">
+              Plz Enter More Detail
+             </p>
+          </div>
+        </div>
+      </div>
+     
+     
+    </section>
+      <button type="submit" class="button is-success is-fullwidth" >Submit Record</button>
+      <!-- <button class="delete" aria-label="close" id="closeModal"></button> -->
+  </form>
+    
+  </div>
+  
+</div>
+<!-- Mobile Footer Btton -->
+<button class="button is-fullwidth is-dark is-medium is-hidden-desktop" (click)="lancuchForm()" style=" position: fixed; 
+bottom: 0;
+width: 100%;">
+<span class="icon is-large">
+  <i class="fas fa-plus"></i>
+</span>
+<span>ADD REQUIREMENTS</span>
+
+</button>
+<!-- Login and Signup -->
+
+<div class="modal" id="modalShow2">
+  <div id="recaptcha-container" style="display: none"></div>
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="">
+      <div class="box">
+        <div class="field">
+          <label class="label">Phone Number</label>
+          <div class="field-body">
+            <div class="field is-expanded">
+              <div class="field has-addons">
+                <p class="control">
+                  <a class="button is-static"> +91 </a>
+                </p>
+                <p class="control is-expanded">
+                  <input
+                  id="phoneNumber"
+                  class="input"
+                  type="number"
+                  ngModel 
+                  maxlength="10"
+                  placeholder="e.g. 985585858"
+                  />
+                </p>
+              </div>
+              <!-- <p class="help">Do not enter the first zero</p> -->
+            </div>
+          </div>
+          
+          <button class="button is-dark is-fullwidth mt-2" id="otpbtn" (click)="sendOtp()">
+            Send OTP
+          </button>
+        </div>
+<div class="hidden" id="enterotp" hidden>
+        <div class="field">
+          <label class="label">OTP</label>
+          <div class="control">
+            <input
+              id="otp"
+              class="input"
+              type="number"
+              maxlength="6"
+              placeholder="Enter Your OTP"
+            />
+          </div>
+        </div>
+
+        <button class="button is-dark is-fullwidth mt-2" (click)="verifyOtp()">
+          Verify OTP
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    id="closeModal1"
+  ></button>
+</div>

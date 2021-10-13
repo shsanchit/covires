@@ -1,0 +1,87 @@
+<section class="hero is-dark">
+  <div class="hero-body ">
+    <div class="container has-text-centered">
+      <h1 class="title ">
+        {{state}}
+      </h1>
+      <h2 class="subtitle">
+        {{district}}      </h2>
+    </div>
+  </div>
+</section>
+<div class="columns mt-6 mb-9 is-centered">
+  <div class="column is-half">
+    <div class="hero" *ngIf="listLen==0">
+      <div class="container has-text-centered ">
+        <p class="title">
+          Not Found
+        </p>
+        <p class="subtitle mb-3">
+          <i  class="fas fa-not-equal" style="font-size:68px;color: rgb(27, 26, 13);"></i>
+        </p>
+      </div>
+    
+    </div>
+
+ <div *ngFor="let item of lisiting;let i=index" class="card is-center m-2" style=" 
+ ">
+
+ 
+   <div class="card-content">
+     <div class="media">
+       <div class="media-left">
+        <i *ngIf="item.Type=='plasma'" class="fas fa-fill-drip" style="font-size:48px;color: rgb(255, 9, 9);"></i>
+        <i *ngIf="item.Type=='bed'" class="fas fa-bed" style="font-size:48px;color: rgb(223, 206, 55);"></i>
+        <i *ngIf="item.Type=='other'" class="fas fa-folder-plus" style="font-size:48px;color: rgb(83, 55, 206);"></i>
+        <i *ngIf="item.Type=='ventilator'" class="fas fa-bezier-curve" style="font-size:48px;color: rgb(44, 135, 158);"></i>
+        <i *ngIf="item.Type=='medicine'" class="fas fa-capsules" style="font-size:48px;color: rgb(44, 158, 88);"></i>
+        <i *ngIf="item.Type=='oxygen'" class="fas fa-air-freshener" style="font-size:48px;color: rgb(105, 206, 253);"></i>
+
+        <!-- <i class="fa fa-github" style="font-size:48px;"></i> -->
+        
+
+       </div>
+       <div class="media-content">
+         <p class="title is-4">I need {{item.Type}}</p>
+         <p class="subtitle is-6">{{item.name}}</p>
+       </div>
+     </div>
+     <hr>
+
+     <div class="content">
+     {{item.Detail}}
+       <br>
+       <small>{{item.Time |date :'medium'}}</small>
+       
+     </div>
+
+   </div>
+<div class="columns ml-2 mr-2">
+  <div class="column">
+    <a class="button is-dark is-fullwidth">
+        <span class="icon">
+            <i class="fas fa-hands-helping"></i>        </span>
+        <span>Help Out</span>
+      </a>
+  </div>
+  <div class="column">
+    <a class="button is-info is-fullwidth" [href]="'tel:' + item.Mobile" (click)="call(item.Mobile)">
+        <span class="icon">
+            <i class="fas fa-phone-alt"></i>        </span>
+        <span>Call Now</span>
+      </a>
+  </div>
+ 
+  <div class="column">
+    <a class="button is-success is-fullwidth" (click)="whatsapp(item.Mobile)" target="_blank">
+        <span class="icon">
+            <i class="fab fa-whatsapp"></i>        </span>
+        <span>Whatsapp</span>
+      </a>
+  </div>
+</div>
+<br>
+   
+ </div>
+</div>
+</div>

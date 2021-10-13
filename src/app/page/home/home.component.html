@@ -1,0 +1,187 @@
+<section id="hero2" class="hero is-fullheight is-hidden-desktop">
+    <div class="container mt-6 " >
+      <h2 class="subtitle has-text-white has-text-weight-bold	">
+       HELP and
+      </h2>
+      <h1 class="title has-text-white	has-text-weight-bold	">
+       GET HELPED!
+      </h1>
+      <p class="has-text-white has-text-weight-medium">
+        LET’S LEND A HELPING HAND
+      </p>
+      <p class="has-text-white has-text-weight-medium">
+        A PLATFORM TO HELP & RECEIVE HELP OF
+      </p>
+      <h1 id="elementM" class="title has-text-white has-text-weight-bold has-background-danger" style="font-size: 3rem; max-width: 19rem; padding: 0.1; "></h1>
+
+      <div class="hero-body">
+
+      <div class="box" style="width: 100%;">
+        <div class="field">
+          <label class="label">Select Your State and District </label>
+          <div class="control">
+            <div class="select is-danger">
+              <select (change)="selecteState($event)">
+                <option>Select State  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;       &nbsp;&nbsp; -</option>
+                <option *ngFor="let item of state" value="{{item.id}}">{{item.id}}</option>
+              </select>
+            </div>
+            <br>
+          </div>
+          <div class="control mt-4">
+            <div class="select is-danger">
+              <select (change)="selecteDistrict($event)">
+                <option>Select District  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;   &nbsp;&nbsp;       &nbsp;&nbsp; -</option>
+                <option *ngFor="let item of allDistrict">{{item}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+       
+
+        <button class="button is-danger  is-fullwidth" (click)="listing()">
+         Help Them Now!
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-hidden-touch	 is-dark is-fullheight" id="hero1">
+  
+  <div class="columns">
+    <div class="hero-body " style="margin-top:10rem">
+
+    <div class="column is-half
+
+    "> <div class="box" style="width: 30rem;">
+      <div class="field">
+        <label class="label">Select Your State and District </label>
+        <div class="control">
+          <div class="select is-danger is-fullwidth">
+            <select (change)="selecteState($event)">
+              <option>Select State  </option>
+              <option *ngFor="let item of state" value="{{item.id}}">{{item.id}}</option>
+            </select>
+          </div>
+          <br>
+        </div>
+        <div class="control mt-4">
+          <div class="select is-danger is-fullwidth">
+            <select (change)="selecteDistrict($event)">
+              <option>Select District  </option>
+              <option  *ngFor="let item of allDistrict">{{item}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+     
+
+      <button class="button is-danger is-fullwidth" (click)="listing()">
+       Help Them Now!
+      </button>
+    </div></div>
+    <div class="column ml-5">     
+      <div class="container is-pulled-left" >
+        <h2 class="subtitle has-text-white has-text-weight-bold	">
+         HELP and
+        </h2>
+        <h1 class="title has-text-white	has-text-weight-bold	">
+         GET HELPED!
+        </h1>
+        <p class="has-text-white has-text-weight-medium">
+          LET’S LEND A HELPING HAND
+        </p>
+        <p class="has-text-white has-text-weight-medium">
+          A PLATFORM TO HELP & RECEIVE HELP
+        </p>
+        <h1 id="element" class="title has-text-white has-text-weight-bold " style="background-color: red; font-size: 4rem; max-width: 19rem; ">
+          
+        </h1>
+      </div>
+      <!-- <div class="title has-text-weight-bold	"> GET HELP RELETED TO COVID -19 and TRY TO HELP OTHERS TOO!</div> -->
+    </div>    
+  </div>
+</div>
+
+   
+      <!-- <div class="column">
+        <div class="box has-background-dark">
+          <header class="card-header">
+            <p class="card-header-title has-background-light">
+              Total Cases 
+            </p>
+           
+          </header>
+          <div class="content">
+            <nav class="level">
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Tweets</p>
+                  <p class="title">3,456</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Following</p>
+                  <p class="title">123</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Followers</p>
+                  <p class="title">456K</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Likes</p>
+                  <p class="title">789</p>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        
+      </div> -->
+   
+     
+  
+</section>
+<!-- <div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="">
+      <form class="box">
+        <div class="field">
+          <label class="label">Phone Number</label>
+          <div class="control">
+            <input class="input" type="number" placeholder="e.g. 985585858" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">OTP</label>
+          <div class="control">
+            <input
+              class="input"
+              type="number"
+              maxlength="6"
+              placeholder="Enter Your OTP"
+            />
+          </div>
+        </div>
+
+        <button class="button is-primary" (click)="lancuchLogin()">
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div> -->
